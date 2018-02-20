@@ -10,7 +10,9 @@ and code from [python-vesync](https://github.com/tylergets/python-vesync).
 Installation
 ============
 
-This application requires Python 3.4+
+This application requires Python 3.4+, and HAP-python. Pip will install HAP-python,
+but you need to make sure to take care of the pre-requisites.
+[HAP-python](https://github.com/ikalchev/HAP-python)
 
 Clone the repo, and install the requirements with pip or pip3, depending on your environment.
 
