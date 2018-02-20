@@ -6,6 +6,8 @@ from pyhap_vesync.utils.vesync import Outlet as VOutlet
 
 class Outlet(Accessory):
     category = Category.OUTLET
+    ON = 'open'
+    OFF = 'break'
 
     def __init__(self, api, outlet_data, *args, **kwargs):
         self._outlet = VOutlet(api, outlet_data)

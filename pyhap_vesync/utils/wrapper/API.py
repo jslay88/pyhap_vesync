@@ -7,4 +7,16 @@ class API(VAPI):
 
     def get_devices(self):
         super().get_devices()
-        self.outlets = [Outlet(self, outlet) for outlet in self._devices]
+        if not self.outlets:
+            self.outlets = [Outlet(self, outlet) for outlet in self._devices]
+        else:
+            for outlet in self._devices:
+                existing = [x for x in self.outlets if x._outlet._id == outlet['id']]
+                if existing:
+                    if existing[0].on_char.get_value() == 1 and outlet['relay'] == Outlet.OFF:
+                        existing[0].on_char.set_value(0)
+                    elif existing[0].on_char.get_value() == 0 and outlet['relay'] == Outlet.ON:
+                        existing[0].on_char.set_value(1)
+                else:
+                    new_outlet = Outlet(self, outlet)
+                    self.outlets.append(new_outlet)
