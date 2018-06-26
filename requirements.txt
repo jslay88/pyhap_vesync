@@ -1,2 +1,2 @@
-HAP-python==1.1.5
+HAP-python>=2.2.2
 requests

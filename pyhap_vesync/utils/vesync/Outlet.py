@@ -5,3 +5,6 @@ class Outlet(object):
 
     def switch_outlet(self, state):
         self._api.switch_outlet(self._id, state)
+
+    def get_state(self):
+        self._api.get_devices()

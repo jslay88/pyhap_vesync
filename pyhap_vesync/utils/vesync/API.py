@@ -9,6 +9,7 @@ class API(object):
     """
     init and log into vesync with credentials
     """
+    checking_api = False
 
     def __init__(self, username, password):
         self.session = requests.Session()
@@ -54,6 +55,9 @@ class API(object):
     """
 
     def get_devices(self):
+        if self.checking_api:
+            return self._devices
+        self.checking_api = True
         req = requests.Request(
             'POST',
             BASE_URL + "/loadMain",
@@ -74,6 +78,7 @@ class API(object):
         )
 
         self._devices = response.json()['devices']
+        self.checking_api = False
         return self._devices
 
     def turn_on(self, id):
