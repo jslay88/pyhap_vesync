@@ -5,6 +5,10 @@ from pyhap_vesync.utils.wrapper import Outlet
 class API(VAPI):
     outlets = []
 
+    def __init__(self, driver, username, password):
+        super().__init__(username, password)
+        self.driver = driver
+
     def get_devices(self):
         super().get_devices()
         if not self.outlets:
@@ -18,5 +22,5 @@ class API(VAPI):
                     elif existing[0].on_char.get_value() == 0 and outlet['relay'] == Outlet.ON:
                         existing[0].on_char.set_value(1)
                 else:
-                    new_outlet = Outlet(self, outlet)
+                    new_outlet = Outlet(self.driver, self, outlet)
                     self.outlets.append(new_outlet)

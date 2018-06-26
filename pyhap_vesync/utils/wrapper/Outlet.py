@@ -10,10 +10,10 @@ class Outlet(Accessory):
     ON = 'open'
     OFF = 'break'
 
-    def __init__(self, api, outlet_data, *args, **kwargs):
+    def __init__(self, driver, api, outlet_data, *args, **kwargs):
         self._outlet = VOutlet(api, outlet_data)
         self._api = api
-        super().__init__(outlet_data['deviceName'], *args, **kwargs)
+        super().__init__(driver=driver, display_name=outlet_data['deviceName'], *args, **kwargs)
 
     def hk_callback(self, new_value):
         threading.Thread(target=self._outlet.switch_outlet, args=[new_value]).start()
