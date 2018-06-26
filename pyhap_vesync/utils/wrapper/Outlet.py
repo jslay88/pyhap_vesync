@@ -25,7 +25,7 @@ class Outlet(Accessory):
     def _set_services(self):
         super()._set_services()
 
-        outlet_service = loader.get_serv_loader().get('Outlet')
+        outlet_service = loader.get_serv_loader().get_char('Outlet')
         self.add_service(outlet_service)
         self.on_char = outlet_service.get_characteristic('On')
         self.on_char.setter_callback = self.hk_callback
