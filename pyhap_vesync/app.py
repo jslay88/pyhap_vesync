@@ -14,8 +14,8 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    bridge = Bridge(args.username, args.password, 'Vesync Bridge')
-    driver = AccessoryDriver(bridge, 51827)
+    driver = AccessoryDriver(port=51827)
+    bridge = Bridge(args.username, args.password, 'Vesync Bridge', driver)
     signal.signal(signal.SIGINT, driver.signal_handler)
     signal.signal(signal.SIGTERM, driver.signal_handler)
     driver.start()
