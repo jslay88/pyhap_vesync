@@ -12,7 +12,7 @@ class API(VAPI):
     def get_devices(self):
         super().get_devices()
         if not self.outlets:
-            self.outlets = [Outlet(self, outlet) for outlet in self._devices]
+            self.outlets = [Outlet(self.driver, self, outlet) for outlet in self._devices]
         else:
             for outlet in self._devices:
                 existing = [x for x in self.outlets if x._outlet._id == outlet['id']]
