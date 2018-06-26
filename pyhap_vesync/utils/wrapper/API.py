@@ -4,6 +4,7 @@ from pyhap_vesync.utils.wrapper import Outlet
 
 class API(VAPI):
     outlets = []
+    driver = None
 
     def __init__(self, driver, username, password):
         super().__init__(username=username, password=password)
