@@ -6,7 +6,7 @@ class API(VAPI):
     outlets = []
 
     def __init__(self, driver, username, password):
-        super().__init__(username, password)
+        super().__init__(username=username, password=password)
         self.driver = driver
 
     def get_devices(self):
